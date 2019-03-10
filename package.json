@@ -30,5 +30,8 @@
     "sequelize": "^4.43.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.1"
   }
 }
