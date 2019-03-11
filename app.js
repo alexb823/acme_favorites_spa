@@ -15,15 +15,35 @@ app.get('/', (req, res, next) => {
 app.get('/api/users', (req, res, next) => {
   User.findAll({
     include: [
-      { model: Favorite, include: { model: Thing } },
+      {
+        model: Favorite,
+        include: [
+          {
+            model: Thing,
+          },
+        ],
+      },
     ],
+    order: [[Favorite, 'userId', 'ASC'], [Favorite, 'rank', 'ASC']],
   })
     .then(usersAndFavorites => res.send(usersAndFavorites))
     .catch(next);
 });
 
 app.get('/api/things', (req, res, next) => {
-  Thing.findAll({ include: [{ model: Favorite, include: User }] })
+  Thing.findAll({
+    include: [
+      {
+        model: Favorite,
+        include: [
+          {
+            model: User,
+          },
+        ],
+      },
+    ],
+    order: [[Favorite, 'thingId', 'ASC'], [Favorite, User, 'name', 'ASC']],
+  })
     .then(thingsAndFavoritedBy => res.send(thingsAndFavoritedBy))
     .catch(next);
 });
