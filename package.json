@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "postinstall": "npm run webpack",
+    "postinstall": "webpack",
     "webpack": "webpack",
     "webpack:dev": "npm run webpack -- --mode=development --watch",
     "start:dev": "npm run webpack:dev & DATABASE_URL=postgres://localhost/acme_favorites_spa_db nodemon server.js --ignore src/ --ignore dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+
+
   "keywords": [],
   "author": "",
   "license": "ISC",
