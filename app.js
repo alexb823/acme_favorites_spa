@@ -13,7 +13,11 @@ app.get('/', (req, res, next) => {
 });
 
 app.get('/api/users', (req, res, next) => {
-  User.findAll({ include: [{ model: Favorite, include: Thing }] })
+  User.findAll({
+    include: [
+      { model: Favorite, include: { model: Thing } },
+    ],
+  })
     .then(usersAndFavorites => res.send(usersAndFavorites))
     .catch(next);
 });
